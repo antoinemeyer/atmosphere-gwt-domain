@@ -8,13 +8,13 @@ import com.am.atmospheregwtdomain.client.domain.Domain;
 
 /**
  * Action used to unregister from a domain<br>
- * please use the {@link AtmosphereGwtDomainManager}
+ * use the {@link AtmosphereGwtDomainManager}
  * @author Dev1
  */
 public class UnregisterDomainAction extends AtmosphereDomainAction {
 
 	/**
-	 * Defautl constructor
+	 * Default constructor
 	 */
 	public UnregisterDomainAction() {
 		super();

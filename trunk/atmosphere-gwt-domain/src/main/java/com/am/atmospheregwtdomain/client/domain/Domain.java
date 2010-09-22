@@ -7,10 +7,10 @@ import com.am.atmospheregwtdomain.client.AtmosphereGwtDomainManager;
 import com.greencat.gwt.comet.server.GwtAtmosphereResource;
 
 /**
- * A {@link Domain} is the key of a mapping containing multiple @link {@link GwtAtmosphereResource}<br>
+ * A {@link Domain} is the key of a mapping containing multiple {@link GwtAtmosphereResource} <br>
  * Basically, this is used to send an event to a specific group of clients<br>
- * Use the {@link AtmosphereGwtDomainManager} to register a client to a domain.<br>
- * The name of the domain should be unique to avoid collisions.
+ * Use the {@link AtmosphereGwtDomainManager} to register a client to a {@link Domain}.<br>
+ * The name of the {@link Domain} should be unique to avoid collisions.
  * @author Dev1
  */
 public interface Domain extends Serializable, Comparable<Domain> {

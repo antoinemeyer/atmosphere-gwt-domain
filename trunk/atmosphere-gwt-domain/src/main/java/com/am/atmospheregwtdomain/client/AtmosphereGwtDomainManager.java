@@ -16,15 +16,32 @@ import com.am.atmospheregwtdomain.client.event.ConnectedHandler;
 import com.am.atmospheregwtdomain.client.event.AtmosphereGwtEventBus;
 import com.am.atmospheregwtdomain.client.service.AtmosphereGwtServiceAsync;
 import com.am.atmospheregwtdomain.client.util.Logger;
+import com.am.atmospheregwtdomain.server.ClientId;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import com.greencat.gwt.comet.client.CometClient;
 
 /**
- * Manager of the {@link Domain}s<br>
- * Provides methods to register or unregister a client to/from a domain.
- * @author Dev1
+ * Main manager class on the client-side<br>
+ * On injection: it instantiates {@link CometClientInitializer} to initiate the {@link CometClient} connection<br>
+ * <br>
+ * This class provides a bunch of utility class to register and unregister to and from domains:
+ * <ul>
+ * <li>{@link #registerToDomain(Domain)}</li>
+ * <li>{@link #registerToDomains(List)}</li>
+ * <li>{@link #registerToDomain(Domain, AsyncCallback)}</li>
+ * <li>{@link #registerToDomains(List, AsyncCallback)}</li>
+ * <li>{@link #unregisterFromDomain(Domain)}</li>
+ * <li>{@link #unregisterFromDomains(List)}</li>
+ * <li>{@link #unregisterFromDomain(Domain, AsyncCallback)}</li>
+ * <li>{@link #unregisterFromDomains(List, AsyncCallback)}</li>
+ * </ul>
+ * <i>note that the domain registration can be performed on the application initialization, as the registration will be sent to the server only once the connection is established</i></br>
+ * <br>
+ * Also it always keeps uptodate the current {@link #connectionID} (that is used to generate the {@link ClientId} to identify a client on the server-side)<br>
+ * @author Antoine Meyer
  */
 @Singleton
 public class AtmosphereGwtDomainManager {
