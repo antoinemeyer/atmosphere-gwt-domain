@@ -35,7 +35,7 @@ public class AtmosphereManagerLink extends GwtAtmosphereServlet {
         ClientId clientId = ClientId.getClientId(resource.getSession(false).getId(), (int) resource.getConnectionID());
         atmosphereManager.addClientResource(clientId, resource);
 
-        logger.debug("resource "+resource+" registered with id : "+clientId);
+        logger.debug("[AtmosphereManagerLink] resource "+resource+" registered with id : "+clientId);
 
     }
     

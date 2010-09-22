@@ -8,12 +8,12 @@ import com.google.inject.Singleton;
  * @author Dev1
  */
 @Singleton
-public class EventBus extends HandlerManager {
+public class AtmosphereGwtEventBus extends HandlerManager {
 
 	/**
 	 * Default constructor
 	 */
-	public EventBus() {
+	public AtmosphereGwtEventBus() {
 		super(null);
 	}	
 	
