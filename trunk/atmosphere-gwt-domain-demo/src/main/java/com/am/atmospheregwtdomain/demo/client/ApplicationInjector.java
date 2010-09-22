@@ -1,6 +1,6 @@
 package com.am.atmospheregwtdomain.demo.client;
 
-import com.am.atmospheregwtdomain.client.event.EventBus;
+import com.am.atmospheregwtdomain.client.event.AtmosphereGwtEventBus;
 import com.google.gwt.inject.client.Ginjector;
 
 
@@ -18,6 +18,6 @@ public interface ApplicationInjector extends Ginjector {
 	/**
 	 * @return the event bus
 	 */
-	EventBus getEventBus();
+	AtmosphereGwtEventBus getEventBus();
 
 }
