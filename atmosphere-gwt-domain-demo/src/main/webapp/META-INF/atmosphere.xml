@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="windows-1252"?>
+
+<atmosphere-handlers>
+	<atmosphere-handler context-root="/atmosphere_gwt_domain_demo/atmosphere" class-name="org.atmosphere.handler.ReflectorServletProcessor">
+		<property name="servletClass" value="com.am.atmospheregwtdomain.server.AtmosphereManagerLink" />
+	</atmosphere-handler>
+</atmosphere-handlers>

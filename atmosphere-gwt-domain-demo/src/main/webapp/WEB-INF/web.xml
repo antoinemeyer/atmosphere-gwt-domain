@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+
+	<servlet>
+		<servlet-name>AtmosphereGwtService</servlet-name>
+		<servlet-class>
+			com.am.atmospheregwtdomain.server.AtmosphereGwtServiceImpl
+ 		 </servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>demo</servlet-name>
+		<servlet-class>
+			com.am.atmospheregwtdomain.demo.server.DemoServiceImpl
+ 		 </servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>atmosphere-servlet</servlet-name>
+		<description>atmosphere-servlet</description>
+		<servlet-class>org.atmosphere.cpr.AtmosphereServlet</servlet-class>
+		<init-param>
+			<!-- prevent deadlocks -->
+			<param-name>org.atmosphere.disableOnStateEvent</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<!--
+			<init-param> <param-name>org.atmosphere.useNative</param-name>
+			<param-value>true</param-value> </init-param>
+		-->
+		<!--
+			<init-param> <param-name>org.atmosphere.useBlocking</param-name>
+			<param-value>true</param-value> </init-param>
+		-->
+		<load-on-startup>0</load-on-startup>
+		<!--Uncomment if you want to use Servlet 3.0 Async Support-->
+		<!-- 
+        <async-supported>true</async-supported>
+         -->
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>demo</servlet-name>
+		<url-pattern>/atmosphere_gwt_domain_demo/demo</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>AtmosphereGwtService</servlet-name>
+		<url-pattern>/atmosphere_gwt_domain_demo/atmospheregwtservice</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>atmosphere-servlet</servlet-name>
+		<url-pattern>/atmosphere_gwt_domain_demo/atmosphere</url-pattern>
+	</servlet-mapping>
+
+
+
+
+	<!-- Default page to serve -->
+	<welcome-file-list>
+		<welcome-file>Atmosphere_gwt_domain_demo.html</welcome-file>
+	</welcome-file-list>
+
+</web-app>

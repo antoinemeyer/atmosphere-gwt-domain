@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='atmosphere_gwt_domain_demo'>
+
+	<!-- Inherit the core Web Toolkit stuff.                        -->
+	<inherits name='com.google.gwt.user.User' />
+
+	<!-- Inherit the default GWT style sheet.  You can change       -->
+	<!-- the theme of your GWT application by uncommenting          -->
+	<!-- any one of the following lines.                            -->
+	<inherits name='com.google.gwt.user.theme.standard.Standard' />
+
+	<!-- Specify the app entry point class.                         -->
+	<entry-point class='com.am.atmospheregwtdomain.demo.client.Atmosphere_gwt_domain_demo' />
+
+	<!-- Specify the paths for translatable code                    -->
+	<source path='client' />
+	<source path='shared' />
+
+	<!-- Other module inherits                                      -->
+	<!-- Inherit from the atmosphere gwt 							-->
+	<inherits name="com.am.atmospheregwtdomain.Atmosphere_gwt_domain" />
+
+</module>
