@@ -134,8 +134,9 @@ public class AtmosphereManager {
 	public void removeClientFromDomain(ClientId id, Domain domain) {
 		// simply remove it if it exists
 		logger.debug("[AtmosphereManager] remove client "+id+ " from "+domain.getName());
-		if (!domainBroadcasters.get(domain).remove(id))
-			logger.error("[AtmosphereManager] cannot find "+id+ " in "+domain.getName());
+		List<ClientId> list = domainBroadcasters.get(domain);
+		if (list != null) 
+			list.remove(id);
 	}
 
 	/**
