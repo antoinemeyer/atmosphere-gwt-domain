@@ -13,7 +13,7 @@ import com.am.atmospheregwtdomain.client.action.UnregisterDomainAction;
 import com.am.atmospheregwtdomain.client.domain.Domain;
 import com.am.atmospheregwtdomain.client.event.ConnectedEvent;
 import com.am.atmospheregwtdomain.client.event.ConnectedHandler;
-import com.am.atmospheregwtdomain.client.event.EventBus;
+import com.am.atmospheregwtdomain.client.event.AtmosphereGwtEventBus;
 import com.am.atmospheregwtdomain.client.service.AtmosphereGwtServiceAsync;
 import com.am.atmospheregwtdomain.client.util.Logger;
 import com.google.gwt.user.client.Window;
@@ -44,12 +44,12 @@ public class AtmosphereGwtDomainManager {
 	/** the service for rpc calls */
 	private AtmosphereGwtServiceAsync service;
 	/** the event bus */
-	private EventBus eventbus;
+	private AtmosphereGwtEventBus eventbus;
 	
 	//////////////
 	
 	@Inject
-	public AtmosphereGwtDomainManager(AtmosphereGwtServiceAsync service, EventBus eventbuss, CometClientInitializer cometClientInitializer) {
+	public AtmosphereGwtDomainManager(AtmosphereGwtServiceAsync service, AtmosphereGwtEventBus eventbuss, CometClientInitializer cometClientInitializer) {
 		this.service=service;
 		this.eventbus=eventbuss;
 		eventbus.addHandler(ConnectedEvent.getType(), new ConnectedHandler() {
@@ -262,11 +262,11 @@ public class AtmosphereGwtDomainManager {
 			this.message = message;
 		}
 		public void onSuccess(Void result) {
-			Logger.debug("[AtmosphereGwtFEManager] "+message+" successful.");
+			Logger.debug("[AtmosphereGwtDomainManager] "+message+" successful.");
 			//nothing
 		}
 		public void onFailure(Throwable caught) {
-			Logger.error("[AtmosphereGwtFEManager] "+message+" failed.", caught);
+			Logger.error("[AtmosphereGwtDomainManager] "+message+" failed.", caught);
 			caught.printStackTrace();
 			Window.alert(caught.getLocalizedMessage());
 		}
