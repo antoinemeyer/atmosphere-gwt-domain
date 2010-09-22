@@ -6,7 +6,7 @@ import com.google.gwt.user.client.rpc.IsSerializable;
 
 /**
  * A convenient Action class containing the {@link #connectionId} required to identify the good client mapping for client-specific related events<br>
- * The connection ID is concatenated to the session ID to obtain a unique {@link ClientId} <br>
+ * The connection ID is concatenated to the session ID to obtain a unique {@link ClientId} on the server-side <br>
  */
 public class AtmosphereAction implements IsSerializable {
 
