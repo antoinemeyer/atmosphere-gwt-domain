@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.am</groupId>
+	<artifactId>atmosphere-gwt-domain-demo</artifactId>
+	<packaging>war</packaging>
+	<name>Atmosphere GWT Domain Demo</name>
+	<version>0.1</version>
+
+	<properties>
+		<gwtModule>com.am.atmospheregwtdomain.demo.Atmosphere_gwt_domain_demo</gwtModule>
+		<war.target>${basedir}/src/main/webapp</war.target>
+		<gwt.compiler.force>false</gwt.compiler.force>
+		<gwt.draftCompile>false</gwt.draftCompile>
+		<gwt.style>PRETTY</gwt.style>
+		<outputDir>${war.target}/WEB-INF/classes</outputDir>
+		<gwtVersion>2.0.3</gwtVersion>
+	</properties>
+
+	<build>
+		<outputDirectory>${outputDir}</outputDirectory>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>gwt-maven-plugin</artifactId>
+				<version>1.2</version>
+				<configuration>
+					<module>${gwtModule}</module>
+					<gwtVersion>${gwt.version}</gwtVersion>
+					<runTarget>http://localhost:8888/Atmosphere_gwt_domain_demo.html</runTarget>
+					<noServer>false</noServer>
+					<hostedWebapp>${war.target}</hostedWebapp>
+				</configuration>
+				<executions>
+					<execution>
+						<configuration>
+							<extraJvmArgs>-Xmx512m</extraJvmArgs>
+							<sourcesOnPath>true</sourcesOnPath>
+
+							<modules>
+								<module>${gwtModule}</module>
+							</modules>
+
+							<gwtVersiom>${gwt.version}</gwtVersiom>
+						</configuration>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-clean-plugin</artifactId>
+				<configuration>
+					<filesets>
+						<fileset>
+							<directory>${war.target}/atmosphere_gwt_domain_demo</directory>
+						</fileset>
+						<fileset>
+							<directory>${war.target}/WEB-INF/lib</directory>
+						</fileset>
+					</filesets>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>com.am</groupId>
+			<artifactId>atmosphere-gwt-domain</artifactId>
+			<version>0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-user</artifactId>
+			<version>${gwtVersion}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-servlet</artifactId>
+			<version>${gwtVersion}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.gwt.inject</groupId>
+			<artifactId>gin</artifactId>
+			<version>1.0</version>
+		</dependency>
+	</dependencies>
+
+</project>
+
+
+
