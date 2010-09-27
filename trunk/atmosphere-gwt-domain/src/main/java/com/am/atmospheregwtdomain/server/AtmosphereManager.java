@@ -171,8 +171,8 @@ public class AtmosphereManager {
 		//extract the atmosphere resources from the gwt resources
 		Set<AtmosphereResource<?, ?>> returnSet = new HashSet<AtmosphereResource<?,?>>();
 		if (domainBroadcasters.containsKey(domain))
-			for (ClientId id : domainBroadcasters.get(domain))
-				returnSet.add(clientResources.get(id).getAtmosphereResource());
+			for (Iterator<ClientId> iterator = domainBroadcasters.get(domain).iterator(); iterator.hasNext();)
+				returnSet.add(clientResources.get(iterator.next()).getAtmosphereResource());
 		
 		//then return it
 		return returnSet;
