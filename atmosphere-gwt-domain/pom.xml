@@ -34,7 +34,7 @@
 			<resource>
 				<directory>src/main/java</directory>
 				<includes>
-					<include>com/am/atmospheregwtdomain/client/**</include>
+					<include>com/am/atmospheregwtdomain/**</include>
 				</includes>
 			</resource>
 		</resources>
