@@ -102,6 +102,13 @@
 		</dependency>
 	</dependencies>
 
+	<repositories>
+		<repository>
+			<id>atmosphere gwt domain repository</id>
+			<url>https://atmosphere-gwt-domain.googlecode.com/svn/mvnrepo</url>
+		</repository>
+	</repositories>
+
 </project>
 
 
