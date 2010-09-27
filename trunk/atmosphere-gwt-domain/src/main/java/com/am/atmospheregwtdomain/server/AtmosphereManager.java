@@ -24,15 +24,15 @@ import com.greencat.gwt.comet.server.GwtAtmosphereResource;
  * <br>
  * You can: <br>
  * <ul>
- * <li>register a client identified by its {@link ClientId} to a {@link Domain} with {@link #addClientToDomain(ClientId, Domain)} </li>
- * <li>unregister a client identified by its {@link ClientId} from a {@link Domain} with {@link #removeClientFromDomain(ClientId, Domain)} </li>
+ * <li>register a client identified by its connectionId to a {@link Domain} with {@link #addClientToDomain(Integer, Domain)} </li>
+ * <li>unregister a client identified by its connectionId from a {@link Domain} with {@link #removeClientFromDomain(Integer, Domain)} </li>
  * <li>check if a domain still has clients subscribed to it with {@link #isDomainActive(Domain)} </li>
  * <li>
  * Send an event to:
  * <ul>
  * <li>-Everyone (broadcast) with {@link #sendEventToAll(PushedEvent)}</li>
  * <li>-A {@link Domain} with {@link #sendEventToDomain(Domain, PushedEvent)}</li>
- * <li>-A specific client identified by its {@link ClientId} with {@link #sendEventToClient(ClientId, PushedEvent)}</li>
+ * <li>-A specific client identified by its connectionId with {@link #sendEventToClient(Integer, PushedEvent)}</li>
  * </ul>
  * </li>
  * </ul>
@@ -43,9 +43,9 @@ public class AtmosphereManager {
     private Log logger = LogFactory.getLog(AtmosphereManager.class.getName());
 	
 	/** The map of client-specific broadcasters */
-	private HashMap<ClientId, GwtAtmosphereResource> clientResources;
+	private HashMap<Integer, GwtAtmosphereResource> clientResources;
 	/** The map of domain-specific broadcasters */
-	private HashMap<Domain, List<ClientId>> domainBroadcasters;
+	private HashMap<Domain, List<Integer>> domainBroadcasters;
 
 	/**
 	 * Constructor<br>
@@ -54,10 +54,10 @@ public class AtmosphereManager {
 	AtmosphereManager() {
 
 		// init the client resources list
-		clientResources = new HashMap<ClientId, GwtAtmosphereResource>();
+		clientResources = new HashMap<Integer, GwtAtmosphereResource>();
 
 		// init the domain resources list
-		domainBroadcasters = new HashMap<Domain, List<ClientId>>();
+		domainBroadcasters = new HashMap<Domain, List<Integer>>();
 
 	}
 
@@ -84,59 +84,59 @@ public class AtmosphereManager {
 	/**
 	 * Add a {@link AtmosphereResource} specific to a client
 	 * 
-	 * @param clientId
+	 * @param connectionId
 	 * @param resource
 	 */
-	void addClientResource(ClientId clientId, GwtAtmosphereResource resource) {
+	void addClientResource(Integer connectionId, GwtAtmosphereResource resource) {
 		logger.debug("[AtmosphereManager] add client "+resource);
 		// add the client resource in the map
-		clientResources.put(clientId, resource);
+		clientResources.put(connectionId, resource);
 	}
 
 	/**
 	 * Get the {@link AtmosphereResource} of the specific client
 	 * 
-	 * @param clientId
+	 * @param connectionId
 	 * @return
 	 */
-	private GwtAtmosphereResource getClientResource(ClientId clientId) {
-		return clientResources.get(clientId);
+	private GwtAtmosphereResource getClientResource(Integer connectionId) {
+		return clientResources.get(connectionId);
 	}
 
 	/**
   	 * Add a client to a domain
-	 * @param clientId
+	 * @param connectionId
 	 * @param domain
 	 */
-	public void addClientToDomain(ClientId clientId, Domain domain) {
-		logger.debug("[AtmosphereManager] add client "+clientId+ " to domain "+domain.getName());
+	public void addClientToDomain(Integer connectionId, Domain domain) {
+		logger.debug("[AtmosphereManager] add client "+connectionId+ " to domain "+domain.getName());
 		
 		// get the list of the clients for this domain
-		List<ClientId> list = domainBroadcasters.get(domain);
+		List<Integer> list = domainBroadcasters.get(domain);
 		
 		//if it is not yet created
 		if (list == null) {
 			//we create it
-			list = new ArrayList<ClientId>();
+			list = new ArrayList<Integer>();
 			//and put it in the map
 			domainBroadcasters.put(domain, list);
 		}
 
 		// then add the client to the list
-		list.add(clientId);
+		list.add(connectionId);
 	}
 
 	/**
 	 * Remove the client specified by the id from the specified domain
 	 * @param domain
-	 * @param id
+	 * @param connectionId
 	 */
-	public void removeClientFromDomain(ClientId id, Domain domain) {
+	public void removeClientFromDomain(Integer connectionId, Domain domain) {
 		// simply remove it if it exists
-		logger.debug("[AtmosphereManager] remove client "+id+ " from "+domain.getName());
-		List<ClientId> list = domainBroadcasters.get(domain);
+		logger.debug("[AtmosphereManager] remove client "+connectionId+ " from "+domain.getName());
+		List<Integer> list = domainBroadcasters.get(domain);
 		if (list != null) 
-			list.remove(id);
+			list.remove(connectionId);
 	}
 
 	/**
@@ -146,14 +146,14 @@ public class AtmosphereManager {
 	 */
 	public boolean isDomainActive(Domain domain) {
 		// get the list of resources for this domain
-		final List<ClientId> list = domainBroadcasters.get(domain);
+		final List<Integer> list = domainBroadcasters.get(domain);
 		
 		//if list is null, the domain is inactive
 		if (list == null) 
 			return false;
 
 		// iterate over all the resources to remove the unactive resources
-		for (Iterator<ClientId> iterator = list.iterator(); iterator.hasNext();)
+		for (Iterator<Integer> iterator = list.iterator(); iterator.hasNext();)
 			if (!clientResources.get(iterator.next()).isAlive())
 				iterator.remove();
 
@@ -171,7 +171,7 @@ public class AtmosphereManager {
 		//extract the atmosphere resources from the gwt resources
 		Set<AtmosphereResource<?, ?>> returnSet = new HashSet<AtmosphereResource<?,?>>();
 		if (domainBroadcasters.containsKey(domain))
-			for (Iterator<ClientId> iterator = domainBroadcasters.get(domain).iterator(); iterator.hasNext();)
+			for (Iterator<Integer> iterator = domainBroadcasters.get(domain).iterator(); iterator.hasNext();)
 				returnSet.add(clientResources.get(iterator.next()).getAtmosphereResource());
 		
 		//then return it
@@ -195,12 +195,12 @@ public class AtmosphereManager {
 	
 	/**
 	 * Send the specified event to the client identified by its client id
-	 * @param clientId
+	 * @param connectionId
 	 * @param event
 	 */
-	public <H extends EventHandler> void sendEventToClient(ClientId clientId, PushedEvent<H> event) {
-		logger.debug("[AtmosphereManager] send event "+event.getClass()+" to client "+clientId);
-		getBroadcaster().broadcast(event, getClientResource(clientId).getAtmosphereResource());
+	public <H extends EventHandler> void sendEventToClient(Integer connectionId, PushedEvent<H> event) {
+		logger.debug("[AtmosphereManager] send event "+event.getClass()+" to client "+connectionId);
+		getBroadcaster().broadcast(event, getClientResource(connectionId).getAtmosphereResource());
 	}
 	
 	/**

@@ -7,16 +7,14 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-
 import com.am.atmospheregwtdomain.client.action.RegisterDomainAction;
 import com.am.atmospheregwtdomain.client.action.UnregisterDomainAction;
 import com.am.atmospheregwtdomain.client.domain.Domain;
+import com.am.atmospheregwtdomain.client.event.AtmosphereGwtEventBus;
 import com.am.atmospheregwtdomain.client.event.ConnectedEvent;
 import com.am.atmospheregwtdomain.client.event.ConnectedHandler;
-import com.am.atmospheregwtdomain.client.event.AtmosphereGwtEventBus;
 import com.am.atmospheregwtdomain.client.service.AtmosphereGwtServiceAsync;
 import com.am.atmospheregwtdomain.client.util.Logger;
-import com.am.atmospheregwtdomain.server.ClientId;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.inject.Inject;
@@ -40,7 +38,7 @@ import com.greencat.gwt.comet.client.CometClient;
  * </ul>
  * <i>note that the domain registration can be performed on the application initialization, as the registration will be sent to the server only once the connection is established</i></br>
  * <br>
- * Also it always keeps uptodate the current {@link #connectionID} (that is used to generate the {@link ClientId} to identify a client on the server-side)<br>
+ * Also it always keeps uptodate the current {@link #connectionID} (that is used to identify a client on the server-side)<br>
  * @author Antoine Meyer
  */
 @Singleton
