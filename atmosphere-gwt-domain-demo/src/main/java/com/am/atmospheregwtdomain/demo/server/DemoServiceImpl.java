@@ -6,7 +6,6 @@ import com.am.atmospheregwtdomain.demo.shared.DemoService;
 import com.am.atmospheregwtdomain.demo.shared.event.HelloEvent;
 import com.am.atmospheregwtdomain.server.AtmosphereManager;
 import com.am.atmospheregwtdomain.server.AtmosphereManagerCreator;
-import com.am.atmospheregwtdomain.server.ClientId;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 /**
@@ -43,11 +42,8 @@ public class DemoServiceImpl extends RemoteServiceServlet implements DemoService
 		//get the instance of the manager
 		AtmosphereManager atmosphereManager = new AtmosphereManagerCreator().getAtmosphereManager();
 
-		//get the client id from the manager with the session id and the connection id
-		ClientId clientId = ClientId.getClientId(this.getThreadLocalRequest().getSession().getId(), connectionId);
-		
-		//with this client id, we can send a user specific event
-		atmosphereManager.sendEventToClient(clientId, new HelloEvent(text));
+		//with the connection id, we can send a user specific event
+		atmosphereManager.sendEventToClient(connectionId, new HelloEvent(text));
 		
 	}
 
