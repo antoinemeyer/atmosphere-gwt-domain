@@ -4,7 +4,7 @@ import com.google.gwt.event.shared.HandlerManager;
 import com.google.inject.Singleton;
 
 /**
- * The event bus
+ * The event bus used by {@link PushedEvent}s
  * @author Dev1
  */
 @Singleton

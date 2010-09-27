@@ -9,7 +9,7 @@ import com.google.gwt.event.shared.EventHandler;
 import com.google.gwt.event.shared.GwtEvent;
 
 /**
- * Extend this class in order to be able to send these events to the back-end, they will be dispatched by {@link CometClientListener#onMessage(java.util.List)}
+ * Extend this class in order to be able to push these events from the back-end to the client-side, they will be dispatched using {@link AtmosphereGwtEventBus} by {@link CometClientListener#onMessage(java.util.List)}
  * @author Dev1
  *
  * @param <H>
