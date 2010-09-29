@@ -31,7 +31,7 @@ public class DemoServiceImpl extends RemoteServiceServlet implements DemoService
 		//get the instance of the manager
 		AtmosphereManager atmosphereManager = new AtmosphereManagerCreator().getAtmosphereManager();
 		
-		//send an event to the domain
+		//send an event to all
 		atmosphereManager.sendEventToAll(new HelloEvent(text));
 		
 	}
