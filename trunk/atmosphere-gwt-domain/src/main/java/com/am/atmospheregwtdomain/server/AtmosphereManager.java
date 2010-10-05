@@ -11,8 +11,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.atmosphere.cpr.AtmosphereResource;
 import org.atmosphere.cpr.Broadcaster;
-import org.atmosphere.cpr.BroadcasterFactory;
-import org.atmosphere.cpr.Broadcaster.SCOPE;
+import org.atmosphere.util.SimpleBroadcaster;
 
 import com.am.atmospheregwtdomain.client.domain.Domain;
 import com.am.atmospheregwtdomain.client.event.PushedEvent;
@@ -47,6 +46,9 @@ public class AtmosphereManager {
 	/** The map of domain-specific broadcasters */
 	private HashMap<Domain, List<Integer>> domainBroadcasters;
 
+	/** The broadcaster <br><br> <i>We use a simple broadcaster for now to guarantee the order of the messages sent</i> */
+	private Broadcaster broadcaster = new SimpleBroadcaster();
+	
 	/**
 	 * Constructor<br>
 	 * Use {@link AtmosphereManagerCreator#getInstance()}
@@ -61,24 +63,19 @@ public class AtmosphereManager {
 
 	}
 
-	/** identifier of the global broadcaster */
-	private static final String GLOBAL_BROADCASTER = "GLOBAL_BROADCASTER";
-
 	/**
-	 * @return {@link #globalBroadcaster}
+	 * @return {@link #broadcaster}
 	 */
 	private Broadcaster getBroadcaster() {
-		return BroadcasterFactory.getDefault().lookup(Broadcaster.class, GLOBAL_BROADCASTER, true);
+		return broadcaster;
 	}
 
 	/**
-	 * Initialize the global broadcaster
-	 * 
-	 * @param broadcaster
+	 * Specify the broadcaster to the resource.
+	 * @param resource
 	 */
-	void initBroadcaster(Broadcaster broadcaster) {
-		broadcaster.setID(GLOBAL_BROADCASTER);
-		broadcaster.setScope(SCOPE.APPLICATION);
+	void initBroadcaster(AtmosphereResource<?, ?> resource) {
+		resource.setBroadcaster(getBroadcaster());
 	}
 
 	/**
