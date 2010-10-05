@@ -16,7 +16,7 @@
 		<gwt.draftCompile>false</gwt.draftCompile>
 		<gwt.style>PRETTY</gwt.style>
 		<outputDir>${war.target}/WEB-INF/classes</outputDir>
-		<gwtVersion>2.0.3</gwtVersion>
+		<gwtVersion>2.0.4</gwtVersion>
 	</properties>
 
 	<build>
@@ -82,7 +82,7 @@
 		<dependency>
 			<groupId>com.am</groupId>
 			<artifactId>atmosphere-gwt-domain</artifactId>
-			<version>0.1-SNAPSHOT</version>
+			<version>0.1</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.gwt</groupId>
