@@ -28,8 +28,8 @@ public class AtmosphereManagerLink extends GwtAtmosphereServlet {
         //get the atmosphere manager singleton
         AtmosphereManager atmosphereManager = new AtmosphereManagerCreator().getAtmosphereManager();
         	
-        //init the broadcaster of the resource as global
-        atmosphereManager.initBroadcaster(resource.getBroadcaster());
+        //synchronize the resource and broadcaster
+        atmosphereManager.initBroadcaster(resource.getAtmosphereResource());
         
         //keep and map the session id with the atmosphere resource
         int connectionId = (int) resource.getConnectionID();
