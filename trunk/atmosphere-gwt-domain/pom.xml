@@ -7,11 +7,11 @@
 	<artifactId>atmosphere-gwt-domain</artifactId>
 	<packaging>jar</packaging>
 	<name>Atmosphere GWT Domain</name>
-	<version>0.1-SNAPSHOT</version>
+	<version>0.1</version>
 	<url>http://code.google.com/p/atmosphere-gwt-domain/</url>
 
 	<properties>
-		<gwtVersion>2.0.3</gwtVersion>
+		<gwtVersion>2.0.4</gwtVersion>
 	</properties>
 
 	<build>
