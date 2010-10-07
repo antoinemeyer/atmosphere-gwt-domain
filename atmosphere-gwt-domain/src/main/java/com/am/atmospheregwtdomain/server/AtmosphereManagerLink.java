@@ -27,7 +27,7 @@ public class AtmosphereManagerLink extends GwtAtmosphereServlet {
 
         //get the atmosphere manager singleton
         AtmosphereManager atmosphereManager = new AtmosphereManagerCreator().getAtmosphereManager();
-        	
+
         //synchronize the resource and broadcaster
         atmosphereManager.initBroadcaster(resource.getAtmosphereResource());
         
@@ -35,10 +35,13 @@ public class AtmosphereManagerLink extends GwtAtmosphereServlet {
         int connectionId = (int) resource.getConnectionID();
         atmosphereManager.addClientResource(connectionId, resource);
 
-        logger.debug("[AtmosphereManagerLink] resource "+resource+" registered with id : "+connectionId);
-
     }
     
-    
+    @Override
+	public void cometTerminated(GwtAtmosphereResource cometResponse, boolean serverInitiated) {
+    	//TODO this method is not called on heartbeat failed, so we might be never aware of client disconnection.
+    	//so for now, we just pass a recurrent thread in AtmosphereManager that checks the aliveness of resources to remove the mappings...
+    	super.cometTerminated(cometResponse, serverInitiated);
+    }
 
 }

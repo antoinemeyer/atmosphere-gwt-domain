@@ -7,11 +7,12 @@
 	<artifactId>atmosphere-gwt-domain</artifactId>
 	<packaging>jar</packaging>
 	<name>Atmosphere GWT Domain</name>
-	<version>0.1</version>
+	<version>0.1.1</version>
 	<url>http://code.google.com/p/atmosphere-gwt-domain/</url>
 
 	<properties>
 		<gwtVersion>2.0.4</gwtVersion>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 	<build>
@@ -73,11 +74,6 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>commons-logging</groupId>
-			<artifactId>commons-logging</artifactId>
-			<version>1.1.1</version>
-		</dependency>
-		<dependency>
 			<groupId>com.googlecode.gwt.inject</groupId>
 			<artifactId>gin</artifactId>
 			<version>1.0</version>
@@ -103,6 +99,7 @@
 			<url>svn:https://atmosphere-gwt-domain.googlecode.com/svn/mvnrepo</url>
 		</repository>
 	</distributionManagement>
+
 
 </project>
 
