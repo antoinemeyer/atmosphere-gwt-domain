@@ -47,6 +47,11 @@ public class HelloEvent extends PushedEvent<HelloEventHandler> {
 		this.text = text;
 	}
 	
+	@Override
+	public String toString() {
+		return "[HelloEvent] "+text;
+	}
+	
 	///////////////////////////////
 	//TYPE
 	///////////////////////////////
