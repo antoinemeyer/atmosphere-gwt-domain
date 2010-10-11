@@ -15,7 +15,6 @@ Add this to your repositories:
 	<url>https://atmosphere-gwt-domain.googlecode.com/svn/mvnrepo</url>
 </repository>
 }}}
-<br>
     * Without maven:<br>
 download the jar in [http://code.google.com/p/atmosphere-gwt-domain/downloads downloads]<br>
 add it to your classpath and in the web-inf/lib directory of your war<br>
