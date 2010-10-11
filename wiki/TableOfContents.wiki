@@ -1,2 +1,2 @@
-  * [http://code.google.com/p/atmosphere-gwt-domain/wiki/Configuration Configuration]
-  * [http://code.google.com/p/atmosphere-gwt-domain/wiki/Operation How it works]
+  # [http://code.google.com/p/atmosphere-gwt-domain/wiki/Configuration Configuration]
+  # [http://code.google.com/p/atmosphere-gwt-domain/wiki/Operation How it works]
