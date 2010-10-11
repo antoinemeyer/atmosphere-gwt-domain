@@ -1,3 +1,4 @@
+#summary How to configure your project.
 #labels Phase-Deploy
 ===1) Project===
     * With maven:<br>
