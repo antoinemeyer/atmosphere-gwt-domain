@@ -1,0 +1,61 @@
+===1) Project===
+    * With maven:<br>
+Add this to your dependencies:
+{{{
+<dependency>
+	<groupId>com.am</groupId>
+	<artifactId>atmosphere-gwt-domain</artifactId>
+	<version>0.1.1</version>
+</dependency>
+}}}
+Add this to your repositories:
+{{{
+<repository>
+	<id>atmosphere gwt domain repository</id>
+	<url>https://atmosphere-gwt-domain.googlecode.com/svn/mvnrepo</url>
+</repository>
+}}}
+<br>
+    * Without maven:<br>
+download the jar in [http://code.google.com/p/atmosphere-gwt-domain/downloads downloads]<br>
+add it to your classpath and in the web-inf/lib directory of your war<br>
+(do the same for the dependencies of the project)<br><br>
+===2) Module===
+Inherit from the module in your .gwt.xml:
+{{{
+<inherits name="com.am.atmospheregwtdomain.Atmosphere_gwt_domain" />
+}}}
+===3) Web configuration===
+    * atmosphere-gwt-domain rpc
+in your WEB-INF/web.xml 
+{{{
+<servlet>
+        <servlet-name>AtmosphereGwtDomainRPC</servlet-name>
+        <servlet-class>com.am.atmospheregwtdomain.server.AtmosphereGwtServiceImpl</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>AtmosphereGwtDomainRPC</servlet-name>
+	<url-pattern>/your_module_name/atmospheregwtservice</url-pattern>
+</servlet-mapping>
+}}}
+    * atmosphere 
+in your WEB-INF/web.xml 
+{{{
+<servlet>
+	<servlet-name>atmosphere-servlet</servlet-name>
+	<servlet-class>org.atmosphere.cpr.AtmosphereServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>atmosphere-servlet</servlet-name>
+	<url-pattern>/your_module_name/atmosphere</url-pattern>
+</servlet-mapping>
+}}}
+in the META-INF/atmosphere.xml
+{{{
+<atmosphere-handlers>
+	<atmosphere-handler context-root="/your_module_name/atmosphere" class-name="org.atmosphere.handler.ReflectorServletProcessor">
+		<property name="servletClass" value="com.am.atmospheregwtdomain.server.AtmosphereManagerLink" />
+	</atmosphere-handler>
+</atmosphere-handlers>
+}}}
+_you can check the details about the servlet configuration of [https://atmosphere.dev.java.net/ atmosphere] on the [https://atmosphere.dev.java.net/atmosphere_whitepaper.pdf atmosphere whitepaper]_
