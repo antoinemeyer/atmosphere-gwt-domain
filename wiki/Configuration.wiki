@@ -1,5 +1,4 @@
 #labels Phase-Deploy
-#sidebar Configuration
 ===1) Project===
     * With maven:<br>
 Add this to your dependencies:
