@@ -22,8 +22,7 @@ public class AtmosphereManagerLink extends GwtAtmosphereServlet {
 	private Log logger = LogFactory.getLog(AtmosphereManagerLink.class.getName());
 	
     @Override
-    public void doComet(GwtAtmosphereResource resource) throws ServletException, IOException {
-        super.doComet(resource);
+    public int doComet(GwtAtmosphereResource resource) throws ServletException, IOException {
 
         //get the atmosphere manager singleton
         AtmosphereManager atmosphereManager = new AtmosphereManagerCreator().getAtmosphereManager();
@@ -35,6 +34,7 @@ public class AtmosphereManagerLink extends GwtAtmosphereServlet {
         int connectionId = (int) resource.getConnectionID();
         atmosphereManager.addClientResource(connectionId, resource);
 
+        return super.doComet(resource);
     }
     
     @Override
