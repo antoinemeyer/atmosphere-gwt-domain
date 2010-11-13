@@ -284,7 +284,7 @@ public class AtmosphereManager {
 					//check if the resource is dead
 					//note that we dont actually check .isAlive() because it might be still alive even if the client is disconnected (!)
 					//instead, we check the status of the writer
-					if (clientResources.get(next).getResponseWriter().isTerminated()) {
+					if (!clientResources.get(next).isAlive()) {
 						//add it to the remove list
 						toDelete.add(next);
 					} else {
